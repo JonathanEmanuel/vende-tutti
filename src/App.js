@@ -9,6 +9,8 @@ function App() {
     <>
       <NavBar></NavBar>
       <ItemListContainer name="Mensaje en el componente Hijo"></ItemListContainer>
+
+      
     </>
   );
 }
