@@ -2,6 +2,30 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import CardWidget from "./CartWidget";
 export const NavBar = () =>{
+
+    const categorias = [
+        {
+            id: 1,
+            nombre: "Electrodomésticos",
+            url: "/categoria/electro"
+        },
+        {
+            id: 2,
+            nombre: "Textil",
+            url: "/categoria/textil"
+        },
+        {
+            id: 3,
+            nombre: "Bazar",
+            url: "/categoria/bazar"
+        },
+        {
+            id: 4,
+            nombre: "Hogar",
+            url: "/categoria/hogar"
+        }
+    ];
+
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <div className="container-fluid">
@@ -20,11 +44,13 @@ export const NavBar = () =>{
                             Categorías
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <NavLink className="dropdown-item" key={1} to="/categoria/electro" activeClassName="active">Electrodomesticos</NavLink>
-                                <NavLink className="dropdown-item" key={2} to="/categoria/textil" activeClassName="active">Textil</NavLink>
-                                <NavLink className="dropdown-item" key={3} to="/categoria/bazar" activeClassName="active">Bazar</NavLink>
-                                <NavLink className="dropdown-item" key={4} to="/categoria/hogar" activeClassName="active">Hogar</NavLink>
+                                {
+                                    categorias.map(categoria => (
+                                        <NavLink className="dropdown-item" to={categoria.url} key={categoria.id}>{categoria.nombre}</NavLink>
+                                    ))
+                                }
                             </ul>
+
                         </li>
                         <li className="nav-item">
                             <NavLink className="nav-link" to="/contactos" activeClassName="active">Contactos</NavLink>                         

@@ -7,7 +7,7 @@ export const ItemDetailContainer = () => {
     const [item, setItem] = useState({}); 
     const [loader, setLoader] = useState(true);
     const { id } = useParams();
-    console.log(id, data);
+
     useEffect(() => {
         setLoader(true);
         const getItems = new Promise((resolve) => {
