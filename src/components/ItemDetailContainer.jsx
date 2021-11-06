@@ -1,27 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { ItemDetail } from './ItemDetail';
-import { data } from './data/data';
+import { data } from '../data/data';
 import { useParams } from 'react-router-dom';
 
 export const ItemDetailContainer = () => {
-  const [item, setItem] = useState({}); 
-  const [loader, setLoader] = useState(true);
-  const { id } = useParams();
+    const [item, setItem] = useState({}); 
+    const [loader, setLoader] = useState(true);
+    const { id } = useParams();
+    console.log(id, data);
+    useEffect(() => {
+        setLoader(true);
+        const getItems = new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(data);
+        }, 2000);
+        });
 
-  useEffect(() => {
-    setLoader(true);
-    const getItems = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 2000);
-    });
+        getItems.then((res) => {
+            setItem(res.find((item) => item.id ===  Number( id )));
+        })
+        .finally(() => setLoader(false));
+    }, [id]);
 
-    getItems
-      .then((res) => {
-        setItem(res.find((i) => i.id === id));
-      })
-      .finally(() => setLoader(false));
-  }, [id]);
-
-  return loader ? <h3>Cargando...</h3> : <ItemDetail {...item} />;
+    return loader ? <h3>Cargando...</h3> : <ItemDetail {...item} />;
 };
