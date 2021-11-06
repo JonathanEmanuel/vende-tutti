@@ -1,0 +1,26 @@
+.header{
+    background-color: #56CDF0;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header .logo img {
+    height: 100px;
+    margin-left: 20px;
+    border-radius: 15px;
+}
+
+.header .search {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.header .search input {
+    width: 300px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    padding-left: 10px;
+}
