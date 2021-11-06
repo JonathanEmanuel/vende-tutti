@@ -24,3 +24,20 @@
     border-radius: 15px;
     padding-left: 10px;
 }
+
+nav {
+    box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
+}
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
+    transition: transform .3s;
+}
+
+.card:hover {
+    transform:scale(1.1);
+    transition: transform .3s;
+}
