@@ -31,7 +31,7 @@ export default function ItemListContainer(props){
 
         <>
         <h2>{ props.name}</h2>
-        { cargando ? <p>Cargando produtos</p> : <ItemList productos={productos}/>}
+        { cargando ? <p>Cargando productos</p> : <ItemList productos={productos}/>}
         
         </>
     )
