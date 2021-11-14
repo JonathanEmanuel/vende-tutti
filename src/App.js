@@ -5,36 +5,44 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import ItemListContainer from './components/container/ItemListContainer';
 import { Header } from './components/Header';
 import { ItemDetailContainer } from './components/ItemDetailContainer';
-  
+import { CartContext } from './components/CartContext'
+import { Cart } from './components/Cart';
+
 function App() {
   return (
     <> 
       <BrowserRouter>
-        <Header />
-        <NavBar />
-        <Routes>
-          <Route 
-            path="/" 
-            element={<ItemListContainer />} 
-          />
-          <Route 
-            path='/categoria/:categoryId' 
-            element={<ItemListContainer/>}
-          />
+        <CartContext>
+          <Header />
+          <NavBar />
+          <Routes>
+            <Route 
+              path="/" 
+              element={<ItemListContainer />} 
+            />
+            <Route 
+              path='/categoria/:categoryId' 
+              element={<ItemListContainer/>}
+            />
 
-          <Route 
-            path='/contactos' 
-            element={<h1>contactos</h1>}
-          />
-          <Route 
-            path='*' 
-            element={<h1>No se encontro la página</h1>}
-          />
-          <Route 
-            path='/item/:id' 
-            element={<ItemDetailContainer />}
-          />
-        </Routes>
+            <Route 
+              path='/contactos' 
+              element={<h1>contactos</h1>}
+            />
+            <Route 
+              path='/cart' 
+              element={<Cart />}
+            />
+            <Route 
+              path='*' 
+              element={<h1>No se encontro la página</h1>}
+            />
+            <Route 
+              path='/item/:id' 
+              element={<ItemDetailContainer />}
+            />
+          </Routes>
+        </CartContext>
       </BrowserRouter>
       
     </>
