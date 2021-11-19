@@ -7,27 +7,43 @@ const CartContext = ({children})=>{
     const [unidades, setUnidades] = useState(0);
     const [total, setTotal] = useState(0);
 
+    const clearCart = () => {
+        setCart([]);
+        setUnidades(0);
+        setTotal(0);
+    }
+
+    const removeItem = (id) => {
+        const newCart = cart.filter(item => item.id !== id);
+        setCart(newCart);
+        setUnidades(newCart.length);
+        setTotal(newCart.reduce((total, item) => total + item.total, 0));
+    }
+
     const addToCart = (producto, cantidad) =>{
         const productoExiste = cart.find(item => item.id === producto.id);
-        if(productoExiste){
-            setCart([...cart, {id: producto.id, nombre:producto.nombre, cantidad: cantidad, precio: producto.precio, total: producto.precio * cantidad}]);
+        console.log(productoExiste, cart);
+        if(!productoExiste){
+            setCart([...cart, {id: producto.id, name:producto.name, cantidad: unidades, price: producto.price, total: producto.price * unidades, img: producto.img}]);
+            console.log(cart);
+            console.log(producto.id, producto.name, unidades, producto.price,  producto.img);
             setUnidades(unidades + 1);
-            setTotal(total + (producto.precio * cantidad));
+            setTotal(total + (producto.price * cantidad));
         }else{
             const cartAux = cart.map(item => {
                 if(item.id === producto.id){
                     item.cantidad = item.cantidad + cantidad;
-                    item.total = item.precio * item.cantidad;
+                    item.total = item.price * item.cantidad;
                 }
                 return item;
                 
             });
             setCart(cartAux);
-            setTotal(total + (producto.precio * cantidad));
+            setTotal(total + (producto.price * cantidad));
         }  
     }
 
-    return <Context.Provider value={{cart, unidades, total, addToCart}}>
+    return <Context.Provider value={{cart, unidades, total, addToCart, clearCart, removeItem}}>
         {children}
     </Context.Provider>
 }

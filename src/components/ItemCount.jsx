@@ -27,7 +27,9 @@ const ItemCount = (props) => {
             <span className="badge bg-success p-2">{unidades}</span>
             <button className="btn btn-sm btn-info m-2" onClick={handleStock.restar} >-</button>
 
-            <button className="btn btn-sm btn-primary" onClick={ () => props.onAdd({unidades})} >Agregar al Carrito <i className="fas fa-shopping-cart"></i></button>
+            {unidades> 0 ? 
+                <button className="btn btn-sm btn-primary" onClick={ () => props.onAdd({unidades})} >Agregar al Carrito <i className="fas fa-shopping-cart"></i></button>
+                : null }
         </div>
     );
 }

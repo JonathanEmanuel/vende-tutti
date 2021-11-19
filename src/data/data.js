@@ -1,7 +1,7 @@
 export const data =  [
     {
         id: 1,
-        name: "Producto 12",
+        name: "Remera running",
         price: 2000,
         category: "textil",
         stock: 10,
@@ -43,5 +43,14 @@ export const data =  [
         stock: 40,
         description: "Horno eléctrico de 40 litros. spacio reducido, cocción óptima ",
         img: "../img/horno.png"
+    },
+    {
+        id: 6,
+        name: "Cafetera",
+        price: 21000,
+        category: "bazar",
+        stock: 20,
+        description: "Cafetera Express. Cafetera Nescafé Moulinex Dolce Gusto Mini Me automática negra para cápsulas monodosis 230V ",
+        img: "../img/cafetera.png"
     }
 ]

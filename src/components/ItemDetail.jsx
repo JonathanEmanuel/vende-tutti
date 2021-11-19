@@ -11,7 +11,7 @@ export const ItemDetail = ({ id, name, img, price, stock, description }) => {
 
   const agregar = (props) => {
     setComprar(true);
-    addToCart({id, name, price}, props.unidades);
+    addToCart({id, name, price, img}, props.unidades);
     console.log('Producto agregado al carrito ' + props.unidades);
   }
 
