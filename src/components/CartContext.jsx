@@ -26,9 +26,9 @@ const CartContext = ({children})=>{
         if(!productoExiste){
             setUnidades(unidades + 1);
             setTotal(total + (producto.price * cantidad));
-            setCart([...cart, {id: producto.id, name:producto.name, cantidad: unidades, price: producto.price, total: producto.price * unidades, img: producto.img}]);
+            setCart([...cart, {id: producto.id, name:producto.name, cantidad: cantidad, price: producto.price, total: producto.price * cantidad, img: producto.img}]);
             console.log(cart);
-            console.log(producto.id, producto.name, unidades, producto.price,  producto.img);
+            console.log(producto.id, producto.name, cantidad, producto.price,  producto.img);
 
         }else{
             const cartAux = cart.map(item => {
