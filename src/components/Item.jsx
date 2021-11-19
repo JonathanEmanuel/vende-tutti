@@ -11,7 +11,9 @@ const Item = (props) => {
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>
                 <p className="card-text">${props.price}</p>
-                <a href="index.html" className="btn btn-primary">Agregar al <i className="fas fa-shopping-cart"></i></a>
+                <Link to={`/item/${props.id}`}>
+                    <button className="btn btn-primary">Agregar al <i className="fas fa-shopping-cart"></i></button>
+                </Link>
             </div>
         </div>
     )

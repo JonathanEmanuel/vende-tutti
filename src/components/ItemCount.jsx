@@ -23,11 +23,11 @@ const ItemCount = (props) => {
     return (
         <div>
             <p>Stock disponible: {stock}</p>
-            <span>{unidades}</span>
-            <button className="btn btn-info" onClick={handleStock.sumar} >+</button>
-            <button className="btn btn-info" onClick={handleStock.restar} >-</button>
+            <button className="btn btn-sm btn-info m-2" onClick={handleStock.sumar} >+</button>
+            <span className="badge bg-success p-2">{unidades}</span>
+            <button className="btn btn-sm btn-info m-2" onClick={handleStock.restar} >-</button>
 
-            <button className="btn btn-primary" onClick={ () => props.onAdd({unidades})} >Agregar al Carrito <i className="fas fa-shopping-cart"></i></button>
+            <button className="btn btn-sm btn-primary" onClick={ () => props.onAdd({unidades})} >Agregar al Carrito <i className="fas fa-shopping-cart"></i></button>
         </div>
     );
 }
