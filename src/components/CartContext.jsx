@@ -22,19 +22,20 @@ const CartContext = ({children})=>{
 
     const addToCart = (producto, cantidad) =>{
         const productoExiste = cart.find(item => item.id === producto.id);
-        console.log(productoExiste, cart);
+        
         if(!productoExiste){
-            setUnidades(unidades + 1);
+            setUnidades(unidades + cantidad);
             setTotal(total + (producto.price * cantidad));
             setCart([...cart, {id: producto.id, name:producto.name, cantidad: cantidad, price: producto.price, total: producto.price * cantidad, img: producto.img}]);
-            console.log(cart);
-            console.log(producto.id, producto.name, cantidad, producto.price,  producto.img);
+            //console.log(cart);
+            //console.log(producto.id, producto.name, cantidad, producto.price,  producto.img);
 
         }else{
             const cartAux = cart.map(item => {
                 if(item.id === producto.id){
                     item.cantidad = item.cantidad + cantidad;
                     item.total = item.price * item.cantidad;
+                    setUnidades(unidades + cantidad);
                 }
                 return item;
                 
