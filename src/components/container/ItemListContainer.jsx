@@ -1,7 +1,9 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList";
-import {data } from "../../data/data";
+// import {data } from "../../data/data";
+import { db } from '../../libs/firebaseConfig'
+import { collection, query, where, getDocs} from 'firebase/firestore'
 
 
 
@@ -12,6 +14,26 @@ export default function ItemListContainer(props){
 
     useEffect( () => {
         setCargando(true);
+
+        const getProductos =  categoryId ? 
+                query( collection(db, 'products'), where('category', '==', categoryId))
+                :collection(db, 'products');
+
+
+        getDocs(getProductos).then(res => {
+            const results = res.docs.map(doc => {
+                return {...doc.data(), id: doc.id} 
+            })
+
+
+            console.log(results);
+            setProductos(results);
+        })
+        .finally(() => {
+            setCargando(false);
+        })
+
+        /*
         const listaProductos = new Promise((res, rej)=>{
             setTimeout( ()=> {
                 res(data)
@@ -26,6 +48,7 @@ export default function ItemListContainer(props){
             }
             setCargando(false)
         })
+        */
     }, [categoryId])
     return(
 
