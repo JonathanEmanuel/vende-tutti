@@ -4,9 +4,9 @@ const Item = (props) => {
     return (
 
         
-        <div className="card col-md-3 m-3">
+        <div className="card text-center  col-md-3 m-3">
             <Link to={`/item/${props.id}`}>
-                <img src={props.img} className="card-img-top" alt={props.name} />
+                <img src={props.img} className="card-img-top " alt={props.name} />
             </Link>
             <div className="card-body">
                 <h5 className="card-title">{props.name}</h5>

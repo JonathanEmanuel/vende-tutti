@@ -1,10 +1,8 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "../ItemList";
-// import {data } from "../../data/data";
 import { db } from '../../libs/firebaseConfig'
 import { collection, query, where, getDocs} from 'firebase/firestore'
-
 
 
 export default function ItemListContainer(props){
@@ -25,37 +23,17 @@ export default function ItemListContainer(props){
                 return {...doc.data(), id: doc.id} 
             })
 
-
-            console.log(results);
             setProductos(results);
         })
         .finally(() => {
             setCargando(false);
         })
 
-        /*
-        const listaProductos = new Promise((res, rej)=>{
-            setTimeout( ()=> {
-                res(data)
-            }, 3000)
-        })
-
-        listaProductos.then( (data) => {
-            if( categoryId ) { 
-                setProductos( data.filter( (producto) => producto.category === categoryId))
-            } else {
-                setProductos(data)
-            }
-            setCargando(false)
-        })
-        */
     }, [categoryId])
     return(
-
         <>
-        <h2>{ props.name}</h2>
+        <h2>{props.name}</h2>
         { cargando ? <p>Cargando productos</p> : <ItemList productos={productos}/>}
-        
         </>
     )
 }

@@ -36,7 +36,7 @@ export const NavBar = () =>{
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
-                            <NavLink className="nav-link active" to="/">Inicio</NavLink>
+                            <NavLink className="nav-link" to="/" >Inicio</NavLink>
                         </li>
 
                         <li className="nav-item dropdown">
@@ -53,7 +53,7 @@ export const NavBar = () =>{
 
                         </li>
                         <li className="nav-item">
-                            <NavLink className="nav-link" to="/contactos" activeClassName="active">Contactos</NavLink>                         
+                            <NavLink className="nav-link" to="/contactos" >Contactos</NavLink>                         
                         </li>
 
                     </ul>
