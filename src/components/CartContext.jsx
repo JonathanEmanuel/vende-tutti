@@ -1,4 +1,6 @@
 import React,  {useState} from "react";
+import Swal from 'sweetalert2'
+
 
 const Context = React.createContext();
 const CartContext = ({children})=>{
@@ -18,6 +20,11 @@ const CartContext = ({children})=>{
         setCart(newCart);
         setUnidades(newCart.length);
         setTotal(newCart.reduce((total, item) => total + item.total, 0));
+        Swal.fire({
+            title: 'Producto eliminado del carrito',
+            icon: 'success',
+            confirmButtonText: 'Cerrar'
+        })
     }
 
     const addToCart = (producto, cantidad) =>{

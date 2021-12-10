@@ -2,7 +2,7 @@ import React, {useState, useContext} from 'react';
 import ItemCount from './ItemCount';
 import { Link } from 'react-router-dom';
 import { Context } from './CartContext';
-
+import Swal from 'sweetalert2'
 
 export const ItemDetail = ({ id, name, img, price, stock, description }) => {
 
@@ -12,7 +12,12 @@ export const ItemDetail = ({ id, name, img, price, stock, description }) => {
   const agregar = (props) => {
     setComprar(true);
     addToCart({id, name, price, img}, props.unidades);
-    console.log('Producto agregado al carrito ' + props.unidades);
+
+    Swal.fire({
+      title: 'Producto agregado al carrito',
+      icon: 'success',
+      confirmButtonText: 'Cerrar'
+    })
   }
 
   return !id ? (

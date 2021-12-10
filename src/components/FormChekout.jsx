@@ -3,13 +3,14 @@ import { Context } from "./CartContext";
 import {  Link } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db } from '../libs/firebaseConfig'
-
+import Swal from 'sweetalert2'
 
 export const FormCheckout = () => {
     const [state, setState] = useState({
         name: "",
         lastname: "",
-        email: "",
+        email1: "",
+        email2: "",
         phone: ""
     });
 
@@ -24,12 +25,13 @@ export const FormCheckout = () => {
     
     const handleSubmit = e => {
         e.preventDefault();
-        console.log(state);
+        //console.log(state);
         buyProducts();
         setState({
             name: "",
             lastname: "",
-            email: "",
+            email1: "",
+            email2: "",
             phone: ""
         });
 
@@ -37,16 +39,33 @@ export const FormCheckout = () => {
 
     // Creacion de una nueva orden
     const buyProducts = async () => {
+        const { name, lastname, email1, email2, phone } = state;
+        if( name === "" || lastname === "" || email1 === "" || email2 === "" || phone === "" ){
+            Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Todos los campos son obligatorios',
+            })
+            return;
+        }
+        if( email1 !== email2 ){
+            Swal.fire({
+                icon: 'info',
+                title: 'Oops...',
+                text: 'Las direcciones de correo no coinciden',
+            })
+            return;
+        }
 
         try {
 
             const orders = collection(db, 'orders');
-            const { name, lastname, email, phone } = state;
+
             const order = {
                 buyer: {
                     name,
                     lastname,
-                    email,
+                    email: email1,
                     phone
                 },
                 date: new Date().toLocaleDateString(),
@@ -56,18 +75,30 @@ export const FormCheckout = () => {
                 status: 'pending'
             }
 
-            console.log(order);
+            //console.log(order);
             const docRef = await addDoc(orders, order);
             setState({
                 name: "",
                 lastname: "",
-                email: "",
+                email1: "",
+                email2: "",
                 phone: ""
             });
             clearCart();
-            console.log(docRef.id);
+
+            Swal.fire({
+                title: '¡Gracias por su Compra!',
+                text: 'Código de orden: ' + docRef.id,
+                icon: 'success',
+                confirmButtonText: 'Cerrar'
+            })
         } catch (error) {
             console.log(error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Algo salió mal, intente de nuevo',
+            })
         }
 
 
@@ -102,21 +133,33 @@ export const FormCheckout = () => {
                 <input type="text"  className="form-control" id="phone" name="phone" value={state.phone} onChange={handleChange} />
             </div>
             <div className="form-group m-2">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email1">Email</label>
                 <input
                 type="email"
                 className="form-control"
-                id="email"
-                name="email"
+                id="email1"
+                name="email1"
 
-                value={state.email}
+                value={state.email1}
                 onChange={handleChange}
                 />
             </div>
-            <Link to='/cart'> <button className="btn btn-warning"><i class="far fa-caret-square-left"></i> Regresar al Carrito</button> </Link>
+            <div className="form-group m-2">
+                <label htmlFor="email2">Confirme el Email</label>
+                <input
+                type="email2"
+                className="form-control"
+                id="email2"
+                name="email2"
+
+                value={state.email2}
+                onChange={handleChange}
+                />
+            </div>
+            <Link to='/cart'> <button className="btn btn-warning"><i className="far fa-caret-square-left"></i> Regresar al Carrito</button> </Link>
 
 
-            <button type="submit" className="btn btn-success"> Finalizar Compra <i class="far fa-caret-square-right"></i></button>
+            <button type="submit" className="btn btn-success"> Finalizar Compra <i className="far fa-caret-square-right"></i></button>
             </form>
         )}
         </Context.Consumer>

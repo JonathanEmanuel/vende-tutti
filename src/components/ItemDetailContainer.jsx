@@ -16,11 +16,10 @@ export const ItemDetailContainer = () => {
 
         const item = doc( db, 'products', id )
         getDoc(item).then(res => {
-            console.log(res.data(), id)
             const result = {...res.data(), id: res.id}
             setItem(result);
         
-        }). finally(() => {
+        }).finally(() => {
             setLoader(false);
         })
     }, [id]);
