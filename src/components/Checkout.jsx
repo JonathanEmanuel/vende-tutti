@@ -1,13 +1,14 @@
 import React, {useContext} from "react";
 import { Link } from 'react-router-dom';
 import { Context } from "./CartContext";
+import { FormCheckout } from "./FormChekout";
 
-export const Cart = () => {
-    const {cart, unidades, total, clearCart, removeItem} = useContext(Context);
+export const Checkout = () => {
+    const {cart, unidades, total} = useContext(Context);
 
     return (
         <div className="container mt-3">
-            <h3> <i className="fas fa-shopping-cart"></i> Carrito de compras</h3>
+            <h3> <i className="fas fa-truck"></i> Finalizar compra</h3>
             
             {cart.length === 0 ? (
                 <div>
@@ -28,7 +29,6 @@ export const Cart = () => {
                             <div className="row m-3" key={item.id}>
                                 <div className="col-md-4">
                                     <img src={item.img} className="img-thumbnail"  alt={item.name}></img>
-                                    <button onClick={ () => { removeItem(item.id)} } className="btn btn-danger">Eliminar</button>
                                 </div>
                                 <div className="col-md-8">
                                     <ul className="list-group">
@@ -44,11 +44,7 @@ export const Cart = () => {
                 <div className="col-md-4">
                     <h4>{unidades} items</h4>
                     <h3>Total: ${total}</h3>
-                    <button onClick={clearCart} className="btn btn-warning">Vaciar Carrito</button>
-                    <div className="row mt-3">
-                        <Link to='/checkout'> <button className="btn btn-success">Finalizar Compra</button> </Link>
-
-                    </div>
+                    <FormCheckout />                    
                 </div>
 
             </div>

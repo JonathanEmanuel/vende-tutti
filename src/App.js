@@ -7,6 +7,8 @@ import { Header } from './components/Header';
 import { ItemDetailContainer } from './components/ItemDetailContainer';
 import { CartContext } from './components/CartContext'
 import { Cart } from './components/Cart';
+import { Contacto } from './components/Contact';
+import { Checkout } from './components/Checkout';
 
 function App() {
   return (
@@ -27,11 +29,15 @@ function App() {
 
             <Route 
               path='/contactos' 
-              element={<h1>contactos</h1>}
+              element={<Contacto/>}
             />
             <Route 
               path='/cart' 
               element={<Cart />}
+            />
+            <Route
+              path='/checkout'
+              element={<Checkout />}
             />
             <Route 
               path='*' 
